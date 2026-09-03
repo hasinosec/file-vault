@@ -1,0 +1,13 @@
+# Copy to terraform.tfvars and fill in. terraform.tfvars is git-ignored.
+
+# The single public IP allowed to reach SSH (22) and the app (3000).
+# Find yours with:  curl -4 https://checkip.amazonaws.com
+admin_cidr = "203.0.113.10/32"
+
+# Your SSH public key (the .pub file), used for the EC2 key pair.
+ssh_public_key = "ssh-ed25519 AAAA... you@example.com"
+
+# Optional overrides:
+# project_name = "file-vault"
+# aws_region   = "us-east-1"
+# vpc_cidr     = "10.0.0.0/16"
