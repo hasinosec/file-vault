@@ -1,0 +1,19 @@
+# Runtime data — may contain real accounts and uploaded files
+data/
+uploads/
+node_modules/
+
+# Terraform local state, cache, plans, and variable files
+.terraform/
+.terraform.lock.hcl.backup
+*.tfstate
+*.tfstate.*
+*.tfplan
+terraform/terraform.tfvars
+terraform/*.auto.tfvars
+
+# Never commit keys or env files
+*.pem
+*.key
+.env
+*.swp

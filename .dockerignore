@@ -1,0 +1,10 @@
+# Never copy developer data, Terraform state, credentials, or Git history into an image.
+node_modules/
+data/
+uploads/
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.*
+.git/
+.github/
+*.swp
