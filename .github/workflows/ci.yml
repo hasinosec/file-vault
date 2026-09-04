@@ -56,13 +56,10 @@ jobs:
           directory: terraform
           framework: terraform
           quiet: true
+      - name: Install Trivy
+        run: curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh -s -- -b /usr/local/bin
       - name: Trivy IaC scan (reports; does not block)
-        uses: aquasecurity/trivy-action@v0.28.0
-        with:
-          scan-type: config
-          scan-ref: terraform
-          severity: HIGH,CRITICAL
-          exit-code: "0"
+        run: trivy config terraform --severity HIGH,CRITICAL --exit-code 0
 
   container:
     name: Docker build + image scan
@@ -71,9 +68,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build image
         run: docker build --tag file-vault:ci .
+      - name: Install Trivy
+        run: curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh -s -- -b /usr/local/bin
       - name: Trivy image scan (reports; does not block)
-        uses: aquasecurity/trivy-action@v0.28.0
-        with:
-          image-ref: file-vault:ci
-          severity: HIGH,CRITICAL
-          exit-code: "0"
+        run: trivy image file-vault:ci --severity HIGH,CRITICAL --exit-code 0
