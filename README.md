@@ -19,7 +19,7 @@ app**, all managed as reviewable Terraform and checked in CI before anything shi
 | **Secrets** | The database password is generated and held by AWS Secrets Manager (`manage_master_user_password`). It never appears in code, state output, or config. |
 | **Instance hardening** | IMDSv2 required (`http_tokens = "required"`), encrypted root volume, detailed monitoring. |
 | **Visibility** | Application logs ship to a CloudWatch log group via the CloudWatch Agent; a CPU alarm is defined. |
-| **Supply chain / IaC** | Every push runs gitleaks, Checkov, tfsec, Trivy, `terraform validate`, `npm audit`, and a Docker build. CI holds no cloud credentials and cannot deploy. |
+| **Supply chain / IaC** | Every push runs gitleaks, `terraform fmt`/`validate`, Checkov, Trivy (IaC + image), `npm audit`, and a Docker build. CI holds no cloud credentials and cannot deploy. |
 
 See [`THREAT_MODEL.md`](THREAT_MODEL.md) for assets, trust boundaries, and accepted risks.
 
